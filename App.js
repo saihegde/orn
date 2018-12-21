@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import { Header } from 'react-native-elements'
+import { StyleSheet, Text, View } from 'react-native';
 import Home from './src/components/Home';
 import LoginForm from './src/components/LoginForm';
 
@@ -8,7 +7,7 @@ export default class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = { isLoggedIn: false };
+    this.state = {isLoggedIn: false};
   }
 
   render() {
@@ -18,7 +17,9 @@ export default class App extends React.Component {
       )
     }
     return (
-      <Home/>
+      <View>
+        <Home/>
+      </View>
     );
   }
 }

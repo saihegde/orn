@@ -9,6 +9,8 @@ import JobList from './JobList';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 
+import Home from './Home';
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -83,7 +85,8 @@ export default class LoginForm extends Component {
         isEmailValid: this.validateEmail(email),
         isPasswordValid: password.length >= 8,
       });
-    }, 1500);
+    }, 10);
+    this.setState({ isLoggedIn: true });
   }
 
   signUp() {
@@ -94,12 +97,12 @@ export default class LoginForm extends Component {
       LayoutAnimation.easeInEaseOut();
       this.setState({
         isLoading: false,
-        isEmailValid: this.validateEmail(email) || this.emailInput.shake(),
-        isPasswordValid: password.length >= 8 || this.passwordInput.shake(),
+        isEmailValid: this.validateEmail(email),
+        isPasswordValid: password.length >= 8,
         isConfirmationValid:
-          password == passwordConfirmation || this.confirmationInput.shake(),
+          password == passwordConfirmation,
       });
-    }, 1500);
+    }, 10);
   }
 
   render() {
@@ -123,6 +126,13 @@ export default class LoginForm extends Component {
           <ActivityIndicator/>
         </View>
       )
+    }
+    if(this.state.isLoggedIn){
+        return (
+          <View>
+            <Home/>
+          </View>
+        )
     }
     return (
       <View style={container}>
